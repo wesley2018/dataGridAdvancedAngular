@@ -15,9 +15,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   // dtOptions: DataTables.Settings = {};
   dtOptions: any = {};
   dtTrigger = new Subject();
-
   datatableElement: DataTableDirective;
-
   public dataa = null;
 
   ngOnInit() {
@@ -61,7 +59,21 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       buttons: [
         { extend: 'colvis', text: 'Colunas visíveis' },
         { extend: 'print', text: 'Imprimir' },
-        { extend: 'excel', text: 'Exportar para Excel' }
+        { extend: 'excel', text: 'Exportar para Excel', filename: 'wes' + '_excel' },
+
+        { text: 'New',
+        action: () => {window.alert('Novo Registro')},
+       },{
+       text: 'Edit',
+          //this method opens the dialog and pass this.selected data to its fields
+        //  action: () => {this.openEditDialog(this.selected)}
+        action: () => {window.alert('Editar Registro')},
+     },{
+         text: 'Delete',
+        //  action: () => {this.openDeleteDialog(this.selected)},
+        action: () => {window.alert('Apagar Registro')},
+       }
+
       ],
       responsive: true,
     };

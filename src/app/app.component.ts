@@ -14,6 +14,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   title = 'agoravai';
 
+
   public dataa = [
     { name: 'Nome1', email: 'email1@gmail.com', website: 'website1.com' },
     { name: 'Nome2', email: 'email2@gmail.com', website: 'website2.com' },
@@ -57,14 +58,35 @@ export class AppComponent implements OnInit, AfterViewInit {
     { name: 'Nome40', email: 'email40@gmail.com', website: 'website40.com' },
   ];
 
-  dtOptions: DataTables.Settings = {};
+  // dtOptions: DataTables.Settings = {};
+  dtOptions: any = {};
 
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 5,
       lengthMenu: [5, 10, 25, 30],
-      processing: true
+      processing: true,
+      language: {
+        info: 'Mostrando _START_ até _END_ de _TOTAL_ registros',
+        lengthMenu: "Mostrar _MENU_ registros por página",
+        search: "Pesquisar:",
+        paginate: {
+          "first": "Primeiro",
+          "last": "Último",
+          "next": "Próximo",
+          "previous": "Anterior"
+        }
+      },
+
+      //Se comentar a linha abaixo aparece opção de selecionar a quantidade de registros por página
+      dom: 'Bfrtip',
+      buttons: [
+        { extend: 'colvis', text: 'Colunas visíveis' },
+        { extend: 'print', text: 'Imprimir' },
+        { extend: 'excel', text: 'Exportar para Excel' },
+      ],
+
     };
   }
 

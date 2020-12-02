@@ -20,13 +20,13 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
 
-   this.funcaoOpcoes();
+    this.funcaoOpcoes();
 
-   this.funcaoGeraDados();
+    this.funcaoGeraDados();
 
   }
 
-  funcaoOpcoes(){
+  funcaoOpcoes() {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 5,
@@ -38,9 +38,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
         infoEmpty: "Sem registros",
         lengthMenu: "Mostrar _MENU_ registros por página",
         loadingRecords: "Carregando...",
-        processing:     "Processando...",
+        processing: "Processando...",
         search: "Pesquisar:",
-        zeroRecords:"Nada encontrado",
+        zeroRecords: "Nada encontrado",
         paginate: {
           "first": "Primeiro",
           "last": "Último",
@@ -51,36 +51,22 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
       // dom: 'Bfrtip',
       dom:
-      "<'row mt-3 left aligned'<'col-sm-12'Bf>>" +
-      "<'row'<'col-sm-12'lrt>>" +
-      "<'row'<'col-sm-12'ip>>",
+        "<'row mt-3 left aligned'<'col-sm-12'Bf>>" +
+        "<'row'<'col-sm-12'lrt>>" +
+        "<'row'<'col-sm-12'ip>>",
 
 
       buttons: [
         { extend: 'colvis', text: 'Colunas visíveis' },
         { extend: 'print', text: 'Imprimir' },
         { extend: 'excel', text: 'Exportar para Excel', filename: 'wes' + '_excel' },
-
-        { text: 'New',
-        action: () => {window.alert('Novo Registro')},
-       },{
-       text: 'Edit',
-          //this method opens the dialog and pass this.selected data to its fields
-        //  action: () => {this.openEditDialog(this.selected)}
-        action: () => {window.alert('Editar Registro')},
-     },{
-         text: 'Delete',
-        //  action: () => {this.openDeleteDialog(this.selected)},
-        action: () => {window.alert('Apagar Registro')},
-       }
-
       ],
       responsive: true,
     };
   }
 
-  funcaoGeraDados(){
-    setTimeout( () => {
+  funcaoGeraDados() {
+    setTimeout(() => {
       this.dataa = [
         { name: 'Nome1', email: 'email1@gmail.com', website: 'website1.com' },
         { name: 'Nome2', email: 'email2@gmail.com', website: 'website2.com' },
@@ -145,4 +131,19 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
+  funcaoAdicionar(){
+    console.log("Adicionar registro");
+  }
+
+  funcaoDetalhes(registro){
+    console.log(registro);
+  }
+
+  funcaoEditar(registro){
+    console.log(registro);
+  }
+
+  funcaoExcluir(registro){
+    console.log(registro);
+  }
 }

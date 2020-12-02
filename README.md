@@ -216,5 +216,124 @@ Add the dependencies in the scripts and styles attributes:
             ...
 }
 
-Thanks
+8 - Responsividade
+
+npm install datatables.net-responsive --save
+npm install datatables.net-responsive-dt --save
+
+angular.json
+Add the dependencies in the scripts and styles attributes:
+
+"styles": [
+"node_modules/datatables.net-responsive-dt/css/responsive.dataTables.css"
+],
+"scripts": [
+"node_modules/datatables.net-responsive/js/dataTables.responsive.js"
+],                
+
+-------------------------
+
+HTML
+<table datatable [dtOptions]="dtOptions" class="row-border hover"></table>
+
+-------------------------
+
+Typescript
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-responsive-extension',
+  templateUrl: 'responsive-extension.component.html'
+})
+export class ResponsiveExtensionComponent implements OnInit {
+  // Must be declared as "any", not as "DataTables.Settings"
+  dtOptions: any = {};
+
+  ngOnInit(): void {
+    this.dtOptions = {
+      ajax: 'data/data.json',
+      columns: [{
+        title: 'ID',
+        data: 'id'
+      }, {
+        title: 'First name',
+        data: 'firstName'
+      }, {
+        title: 'Last name',
+        data: 'lastName',
+        class: 'none'
+      }],
+      // Use this attribute to enable the responsive extension
+      responsive: true
+    };
+  }
+}
+
+
+
+9 - Rerender
+HTML
+<p>
+  <button type="button" class="btn waves-effect waves-light blue" (click)="rerender()">
+    Rerender
+  </button>
+</p>
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover"></table>
+
+
+Typescript
+
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { DataTableDirective } from 'angular-datatables';
+import { Subject } from 'rxjs';
+
+@Component({
+  selector: 'app-rerender',
+  templateUrl: 'rerender.component.html'
+})
+export class RerenderComponent implements AfterViewInit, OnDestroy, OnInit {
+  @ViewChild(DataTableDirective, {static: false})
+  dtElement: DataTableDirective;
+
+  dtOptions: DataTables.Settings = {};
+
+  dtTrigger: Subject = new Subject();
+
+  ngOnInit(): void {
+    this.dtOptions = {
+      ajax: 'data/data.json',
+      columns: [{
+        title: 'ID',
+        data: 'id'
+      }, {
+        title: 'First name',
+        data: 'firstName'
+      }, {
+        title: 'Last name',
+        data: 'lastName'
+      }]
+    };
+  }
+
+  ngAfterViewInit(): void {
+    this.dtTrigger.next();
+  }
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
+  }
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      // Destroy the table first
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      this.dtTrigger.next();
+    });
+  }
+}
+
+
+thanks
 

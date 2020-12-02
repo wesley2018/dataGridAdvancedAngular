@@ -1,33 +1,6 @@
-# Agoravai
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.3.
+Datatables
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
-
-1 - DATATABLE INTO YOUR ANGULAR 9 APPLICATION:
 npm install jquery --save
 npm install datatables.net --save
 npm install datatables.net-dt --save
@@ -35,129 +8,61 @@ npm install angular-datatables --save
 npm install @types/jquery --save-dev
 npm install @types/datatables.net --save-dev
 npm install bootstrap --save
- 
 
-2 - ANGULAR.JSON FILE:
+npm install jszip --save
+npm install datatables.net-buttons --save
+npm install datatables.net-buttons-dt --save
+npm install @types/datatables.net-buttons --save-dev
+
+npm install datatables.net-responsive --save
+npm install datatables.net-responsive-dt --save
+
+
 "styles": [
-             ...
-       "node_modules/bootstrap/dist/css/bootstrap.min.css",
-       "node_modules/datatables.net-dt/css/jquery.dataTables.css"
-           ],
+  "src/styles.scss",
+  "node_modules/bootstrap/dist/css/bootstrap.min.css",
+  "node_modules/datatables.net-dt/css/jquery.dataTables.css",
+  "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.css",
+  "node_modules/datatables.net-responsive-dt/css/responsive.dataTables.css"
+],
 "scripts": [
-            ...
-       "node_modules/jquery/dist/jquery.min.js", 
-       "node_modules/bootstrap/dist/js/bootstrap.min.js",
-       "node_modules/datatables.net/js/jquery.dataTables.js"
-     ]
- 
+  "node_modules/jquery/dist/jquery.min.js",
+  "node_modules/bootstrap/dist/js/bootstrap.min.js",
+  "node_modules/datatables.net/js/jquery.dataTables.js",
+  "node_modules/jszip/dist/jszip.js",
+  "node_modules/datatables.net-buttons/js/dataTables.buttons.js",
+  "node_modules/datatables.net-buttons/js/buttons.colVis.js",
+  "node_modules/datatables.net-buttons/js/buttons.flash.js",
+  "node_modules/datatables.net-buttons/js/buttons.html5.js",
+  "node_modules/datatables.net-buttons/js/buttons.print.js",
+  "node_modules/datatables.net-responsive/js/dataTables.responsive.js"
+]
 
-3 - APP.MODULE.TS FILE:
-...
-import {DataTablesModule} from 'angular-datatables';
-imports: [
-    ...
-  DataTablesModule
-  ],
- 
 
-4 - APP.COMPONENT.TS FILE:
+HTML ---------------
 
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { DataTableDirective } from 'angular-datatables';
+<div class="">
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
-})
-export class AppComponent implements OnInit, AfterViewInit {
+  <!-- <button (click)="funcaoAdicionar()" class="btn btn-info mr-2 mt-2">
+    <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-arrow-left-circle-fill mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5.5a.5.5 0 0 0 0-1H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5z"/>
+    </svg>Voltar
+  </button> -->
 
-  @ViewChild(DataTableDirective, { static: false })
-  datatableElement: DataTableDirective;
+  <button (click)="funcaoAdicionar()" class="btn btn-success mt-2"> Adicionar novo Registro
+    <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+      <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+    </svg>
+  </button>
 
-  title = 'agoravai';
-
-  public dataa = [
-    { name: 'Nome1', email: 'email1@gmail.com', website: 'website1.com' },
-    { name: 'Nome2', email: 'email2@gmail.com', website: 'website2.com' },
-    { name: 'Nome3', email: 'email3@gmail.com', website: 'website3.com' },
-    { name: 'Nome4', email: 'email4@gmail.com', website: 'website4.com' },
-    { name: 'Nome5', email: 'email5@gmail.com', website: 'website5.com' },
-    { name: 'Nome6', email: 'email6@gmail.com', website: 'website6.com' },
-    { name: 'Nome7', email: 'email7@gmail.com', website: 'website7.com' },
-    { name: 'Nome8', email: 'email8@gmail.com', website: 'website8.com' },
-    { name: 'Nome9', email: 'email9@gmail.com', website: 'website9.com' },
-    { name: 'Nome10', email: 'email10@gmail.com', website: 'website10.com' },
-    { name: 'Nome11', email: 'email11@gmail.com', website: 'website11.com' },
-    { name: 'Nome12', email: 'email12@gmail.com', website: 'website12.com' },
-    { name: 'Nome13', email: 'email13@gmail.com', website: 'website13.com' },
-    { name: 'Nome14', email: 'email14@gmail.com', website: 'website14.com' },
-    { name: 'Nome15', email: 'email15@gmail.com', website: 'website15.com' },
-    { name: 'Nome16', email: 'email16@gmail.com', website: 'website16.com' },
-    { name: 'Nome17', email: 'email17@gmail.com', website: 'website17.com' },
-    { name: 'Nome18', email: 'email18@gmail.com', website: 'website18.com' },
-    { name: 'Nome19', email: 'email19@gmail.com', website: 'website19.com' },
-    { name: 'Nome20', email: 'email20@gmail.com', website: 'website20.com' },
-    { name: 'Nome21', email: 'email21@gmail.com', website: 'website21.com' },
-    { name: 'Nome22', email: 'email22@gmail.com', website: 'website22.com' },
-    { name: 'Nome23', email: 'email23@gmail.com', website: 'website23.com' },
-    { name: 'Nome24', email: 'email24@gmail.com', website: 'website24.com' },
-    { name: 'Nome25', email: 'email25@gmail.com', website: 'website25.com' },
-    { name: 'Nome26', email: 'email26@gmail.com', website: 'website26.com' },
-    { name: 'Nome27', email: 'email27@gmail.com', website: 'website27.com' },
-    { name: 'Nome28', email: 'email28@gmail.com', website: 'website28.com' },
-    { name: 'Nome29', email: 'email29@gmail.com', website: 'website29.com' },
-    { name: 'Nome30', email: 'email30@gmail.com', website: 'website30.com' },
-    { name: 'Nome31', email: 'email31@gmail.com', website: 'website31.com' },
-    { name: 'Nome32', email: 'email32@gmail.com', website: 'website32.com' },
-    { name: 'Nome33', email: 'email33@gmail.com', website: 'website33.com' },
-    { name: 'Nome34', email: 'email34@gmail.com', website: 'website34.com' },
-    { name: 'Nome35', email: 'email35@gmail.com', website: 'website35.com' },
-    { name: 'Nome36', email: 'email36@gmail.com', website: 'website36.com' },
-    { name: 'Nome37', email: 'email37@gmail.com', website: 'website37.com' },
-    { name: 'Nome38', email: 'email38@gmail.com', website: 'website38.com' },
-    { name: 'Nome39', email: 'email39@gmail.com', website: 'website39.com' },
-    { name: 'Nome40', email: 'email40@gmail.com', website: 'website40.com' },
-  ];
-
-  dtOptions: DataTables.Settings = {};
-
-  ngOnInit() {
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 5,
-      lengthMenu: [5, 10, 25, 30],
-      processing: true
-    };
-  }
-
-  ngAfterViewInit(): void {
-    this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
-      dtInstance.columns().every(function () {
-        const that = this;
-        $('input', this.footer()).on('keyup change', function () {
-          if (that.search() !== this['value']) {
-            that
-              .search(this['value'])
-              .draw();
-          }
-        });
-      });
-    });
-  }
-
-}
-
- 
-
-5 - APP.COMPONENT.HTML FILE:
-<div class="container">
-  <table class="table table-striped table-bordered table-sm row-border hover" datatable [dtOptions]="dtOptions">
+  <table class="table table-striped table-bordered table-sm row-border hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
     <thead>
       <tr>
         <th>Nome</th>
         <th>Email</th>
         <th>Website</th>
+        <th>Ação</th>
       </tr>
     </thead>
     <tbody>
@@ -165,154 +70,147 @@ export class AppComponent implements OnInit, AfterViewInit {
         <td>{{group.name}}</td>
         <td>{{group.email}}</td>
         <td>{{group.website}}</td>
+        <td>
+          <button (click)="funcaoDetalhes(group)" class="btn btn-primary">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-zoom-in" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+              <path d="M10.344 11.742c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1 6.538 6.538 0 0 1-1.398 1.4z"/>
+              <path fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5z"/>
+            </svg>
+          </button>
+
+          <button (click)="funcaoEditar(group)" class="btn btn-warning mx-2">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg>
+          </button>
+          <button (click)="funcaoExcluir(group)" class="btn btn-danger">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+            </svg>
+          </button>
+        </td>
       </tr>
     </tbody>
-    <tfoot>
-      <tr>
-        <th><input type="text" placeholder="Pesquisar nome" name="search-nome" /></th>
-        <th><input type="text" placeholder="Pesquisar e-mail" name="search-email" /></th>
-        <th><input type="text" placeholder="Pesquisar website" name="search-website" /></th>
-      </tr>
-    </tfoot>
   </table>
 </div>
 
-6 - Link Documentação:
- 
-http://l-lin.github.io/angular-datatables/#/getting-started
-
-7 - Botões de Excel 
-
-# If you want to export excel files
-npm install jszip --save
-npm install datatables.net-buttons --save
-npm install datatables.net-buttons-dt --save
-npm install @types/datatables.net-buttons --save-dev
-
-
-angular.json
-Add the dependencies in the scripts and styles attributes:
-
-  
-{
-  "projects": {
-    "your-app-name": {
-      "architect": {
-        "build": {
-          "options": {
-            "styles": [
-              ...
-              "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.css"
-            ],
-            "scripts": [
-              ...
-              "node_modules/jszip/dist/jszip.js",
-              "node_modules/datatables.net-buttons/js/dataTables.buttons.js",
-              "node_modules/datatables.net-buttons/js/buttons.colVis.js",
-              "node_modules/datatables.net-buttons/js/buttons.flash.js",
-              "node_modules/datatables.net-buttons/js/buttons.html5.js",
-              "node_modules/datatables.net-buttons/js/buttons.print.js"
-            ],
-            ...
-}
-
-8 - Responsividade
-
-npm install datatables.net-responsive --save
-npm install datatables.net-responsive-dt --save
-
-angular.json
-Add the dependencies in the scripts and styles attributes:
-
-"styles": [
-"node_modules/datatables.net-responsive-dt/css/responsive.dataTables.css"
-],
-"scripts": [
-"node_modules/datatables.net-responsive/js/dataTables.responsive.js"
-],                
-
--------------------------
-
-HTML
-<table datatable [dtOptions]="dtOptions" class="row-border hover"></table>
-
--------------------------
-
-Typescript
-import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-responsive-extension',
-  templateUrl: 'responsive-extension.component.html'
-})
-export class ResponsiveExtensionComponent implements OnInit {
-  // Must be declared as "any", not as "DataTables.Settings"
-  dtOptions: any = {};
-
-  ngOnInit(): void {
-    this.dtOptions = {
-      ajax: 'data/data.json',
-      columns: [{
-        title: 'ID',
-        data: 'id'
-      }, {
-        title: 'First name',
-        data: 'firstName'
-      }, {
-        title: 'Last name',
-        data: 'lastName',
-        class: 'none'
-      }],
-      // Use this attribute to enable the responsive extension
-      responsive: true
-    };
-  }
-}
-
-
-
-9 - Rerender
-HTML
-<p>
-  <button type="button" class="btn waves-effect waves-light blue" (click)="rerender()">
-    Rerender
-  </button>
-</p>
-<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover"></table>
-
-
-Typescript
+TS ----------
 
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-rerender',
-  templateUrl: 'rerender.component.html'
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
-export class RerenderComponent implements AfterViewInit, OnDestroy, OnInit {
-  @ViewChild(DataTableDirective, {static: false})
+export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
+
+  @ViewChild(DataTableDirective, { static: false })
+
   dtElement: DataTableDirective;
+  // dtOptions: DataTables.Settings = {};
+  dtOptions: any = {};
+  dtTrigger = new Subject();
+  datatableElement: DataTableDirective;
+  public dataa = null;
 
-  dtOptions: DataTables.Settings = {};
+  ngOnInit() {
 
-  dtTrigger: Subject = new Subject();
+    this.funcaoOpcoes();
 
-  ngOnInit(): void {
+    this.funcaoGeraDados();
+
+  }
+
+  funcaoOpcoes() {
     this.dtOptions = {
-      ajax: 'data/data.json',
-      columns: [{
-        title: 'ID',
-        data: 'id'
-      }, {
-        title: 'First name',
-        data: 'firstName'
-      }, {
-        title: 'Last name',
-        data: 'lastName'
-      }]
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      lengthMenu: [5, 10, 25, 30],
+      processing: true,
+      language: {
+        emptyTable: "Não há dados na tabela",
+        info: 'Mostrando _START_ até _END_ de _TOTAL_ registros',
+        infoEmpty: "Sem registros",
+        lengthMenu: "Mostrar _MENU_ registros por página",
+        loadingRecords: "Carregando...",
+        processing: "Processando...",
+        search: "Pesquisar:",
+        zeroRecords: "Nada encontrado",
+        paginate: {
+          "first": "Primeiro",
+          "last": "Último",
+          "next": "Próximo",
+          "previous": "Anterior"
+        }
+      },
+
+      // dom: 'Bfrtip',
+      dom:
+        "<'row mt-3 left aligned'<'col-sm-12'Bf>>" +
+        "<'row'<'col-sm-12'lrt>>" +
+        "<'row'<'col-sm-12'ip>>",
+
+
+      buttons: [
+        { extend: 'colvis', text: 'Colunas visíveis' },
+        { extend: 'print', text: 'Imprimir' },
+        { extend: 'excel', text: 'Exportar para Excel', filename: 'wes' + '_excel' },
+      ],
+      responsive: true,
     };
+  }
+
+  funcaoGeraDados() {
+    setTimeout(() => {
+      this.dataa = [
+        { name: 'Nome1', email: 'email1@gmail.com', website: 'website1.com' },
+        { name: 'Nome2', email: 'email2@gmail.com', website: 'website2.com' },
+        { name: 'Nome3', email: 'email3@gmail.com', website: 'website3.com' },
+        { name: 'Nome4', email: 'email4@gmail.com', website: 'website4.com' },
+        { name: 'Nome5', email: 'email5@gmail.com', website: 'website5.com' },
+        { name: 'Nome6', email: 'email6@gmail.com', website: 'website6.com' },
+        { name: 'Nome7', email: 'email7@gmail.com', website: 'website7.com' },
+        { name: 'Nome8', email: 'email8@gmail.com', website: 'website8.com' },
+        { name: 'Nome9', email: 'email9@gmail.com', website: 'website9.com' },
+        { name: 'Nome10', email: 'email10@gmail.com', website: 'website10.com' },
+        { name: 'Nome11', email: 'email11@gmail.com', website: 'website11.com' },
+        { name: 'Nome12', email: 'email12@gmail.com', website: 'website12.com' },
+        { name: 'Nome13', email: 'email13@gmail.com', website: 'website13.com' },
+        { name: 'Nome14', email: 'email14@gmail.com', website: 'website14.com' },
+        { name: 'Nome15', email: 'email15@gmail.com', website: 'website15.com' },
+        { name: 'Nome16', email: 'email16@gmail.com', website: 'website16.com' },
+        { name: 'Nome17', email: 'email17@gmail.com', website: 'website17.com' },
+        { name: 'Nome18', email: 'email18@gmail.com', website: 'website18.com' },
+        { name: 'Nome19', email: 'email19@gmail.com', website: 'website19.com' },
+        { name: 'Nome20', email: 'email20@gmail.com', website: 'website20.com' },
+        { name: 'Nome21', email: 'email21@gmail.com', website: 'website21.com' },
+        { name: 'Nome22', email: 'email22@gmail.com', website: 'website22.com' },
+        { name: 'Nome23', email: 'email23@gmail.com', website: 'website23.com' },
+        { name: 'Nome24', email: 'email24@gmail.com', website: 'website24.com' },
+        { name: 'Nome25', email: 'email25@gmail.com', website: 'website25.com' },
+        { name: 'Nome26', email: 'email26@gmail.com', website: 'website26.com' },
+        { name: 'Nome27', email: 'email27@gmail.com', website: 'website27.com' },
+        { name: 'Nome28', email: 'email28@gmail.com', website: 'website28.com' },
+        { name: 'Nome29', email: 'email29@gmail.com', website: 'website29.com' },
+        { name: 'Nome30', email: 'email30@gmail.com', website: 'website30.com' },
+        { name: 'Nome31', email: 'email31@gmail.com', website: 'website31.com' },
+        { name: 'Nome32', email: 'email32@gmail.com', website: 'website32.com' },
+        { name: 'Nome33', email: 'email33@gmail.com', website: 'website33.com' },
+        { name: 'Nome34', email: 'email34@gmail.com', website: 'website34.com' },
+        { name: 'Nome35', email: 'email35@gmail.com', website: 'website35.com' },
+        { name: 'Nome36', email: 'email36@gmail.com', website: 'website36.com' },
+        { name: 'Nome37', email: 'email37@gmail.com', website: 'website37.com' },
+        { name: 'Nome38', email: 'email38@gmail.com', website: 'website38.com' },
+        { name: 'Nome39', email: 'email39@gmail.com', website: 'website39.com' },
+        { name: 'Nome40', email: 'email40@gmail.com', website: 'website40.com' },
+      ];
+      this.rerender();
+    }, 5000);
   }
 
   ngAfterViewInit(): void {
@@ -332,8 +230,46 @@ export class RerenderComponent implements AfterViewInit, OnDestroy, OnInit {
       this.dtTrigger.next();
     });
   }
+
+  funcaoAdicionar(){
+    console.log("Adicionar registro");
+  }
+
+  funcaoDetalhes(registro){
+    console.log(registro);
+  }
+
+  funcaoEditar(registro){
+    console.log(registro);
+  }
+
+  funcaoExcluir(registro){
+    console.log(registro);
+  }
 }
 
 
-thanks
+Module -------------
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
+import { DataTablesModule } from 'angular-datatables';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    DataTablesModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
 

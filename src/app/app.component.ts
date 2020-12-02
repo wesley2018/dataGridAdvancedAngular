@@ -9,6 +9,7 @@ import { DataTableDirective } from 'angular-datatables';
 export class AppComponent implements OnInit, AfterViewInit {
 
   @ViewChild(DataTableDirective, { static: false })
+
   datatableElement: DataTableDirective;
 
   title = 'agoravai';

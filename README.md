@@ -181,4 +181,40 @@ export class AppComponent implements OnInit, AfterViewInit {
  
 http://l-lin.github.io/angular-datatables/#/getting-started
 
-Thank you
+7 - Botões de Excel 
+
+# If you want to export excel files
+npm install jszip --save
+npm install datatables.net-buttons --save
+npm install datatables.net-buttons-dt --save
+npm install @types/datatables.net-buttons --save-dev
+
+
+angular.json
+Add the dependencies in the scripts and styles attributes:
+
+  
+{
+  "projects": {
+    "your-app-name": {
+      "architect": {
+        "build": {
+          "options": {
+            "styles": [
+              ...
+              "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.css"
+            ],
+            "scripts": [
+              ...
+              "node_modules/jszip/dist/jszip.js",
+              "node_modules/datatables.net-buttons/js/dataTables.buttons.js",
+              "node_modules/datatables.net-buttons/js/buttons.colVis.js",
+              "node_modules/datatables.net-buttons/js/buttons.flash.js",
+              "node_modules/datatables.net-buttons/js/buttons.html5.js",
+              "node_modules/datatables.net-buttons/js/buttons.print.js"
+            ],
+            ...
+}
+
+Thanks
+
